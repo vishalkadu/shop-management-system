@@ -1,0 +1,52 @@
+[Products]
+  | id (PK)
+  | product_name
+  | price
+    |
+    | 1
+    |
+    V
+[Stock]
+  | id (PK)
+  | product_id (FK)
+  | date_added
+  | quantity
+    |
+    | M
+    |
+    V
+[Sales]
+  | id (PK)
+  | product_id (FK)
+  | date_of_sale
+  | quantity
+  | total
+
+----------------
+Relationships
+----------------
+1. Products to Stock:
+    * Relationship: One-to-Many
+    * Explanation: Each product can have multiple stock entries over time. For instance, a product might be restocked on different dates.
+    * Foreign Key: stock.product_id references products.id.
+2. Products to Sales:
+    * Relationship: One-to-Many
+    * Explanation: Each product can be sold multiple times, resulting in multiple sales records.
+    * Foreign Key: sales.product_id references products.id.
+
+----------------
+Description:
+----------------
+Products:
+Stores product details like name and price.
+Has a one-to-many relationship with both Stock and Sales.
+
+Stock:
+Manages the inventory levels of products.
+Links to Products via product_id.
+Records stock entries over time, showing when and how much of each product is added to stock.
+
+Sales:
+Records sales transactions.
+Links to Products via product_id.
+Shows when and how much of each product was sold, along with the total amount for the sale.
